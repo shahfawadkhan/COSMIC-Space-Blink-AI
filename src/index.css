@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+@layer base {
+  :root,
+  :root.dark,
+  [data-theme="dark"] {
+    /* Dark Observatory Palette */
+    --cosmic-bg: #070B14;
+    --cosmic-sidebar: #0B1020;
+    --cosmic-surface: #101827;
+    --cosmic-surface-subtle: #0B1220;
+    --cosmic-surface-hover: #162238;
+    --cosmic-border: #1E293B;
+    --cosmic-border-subtle: rgba(148, 163, 184, 0.12);
+    --cosmic-border-strong: #334155;
+    
+    /* Scientific Data Typography */
+    --cosmic-text: #F8FAFC;
+    --cosmic-text-muted: #94A3B8;
+    --cosmic-text-subtle: #64748B;
+
+    /* Semantic Status & Candidate Accents */
+    --cosmic-cyan: #38BDF8;
+    --cosmic-cyan-subtle: rgba(56, 189, 248, 0.12);
+    --cosmic-violet: #818CF8;
+    --cosmic-violet-subtle: rgba(129, 140, 248, 0.12);
+    --cosmic-amber: #F59E0B;
+    --cosmic-amber-subtle: rgba(245, 158, 11, 0.12);
+    --cosmic-green: #10B981;
+    --cosmic-green-subtle: rgba(16, 185, 129, 0.12);
+    --cosmic-rose: #F43F5E;
+    --cosmic-rose-subtle: rgba(244, 63, 94, 0.12);
+
+    /* Chart Colors */
+    --cosmic-chart-bg: #101827;
+    --cosmic-chart-grid: #1E293B;
+    --cosmic-chart-axis: #334155;
+    --cosmic-chart-text: #94A3B8;
+  }
+
+  :root.light,
+  [data-theme="light"] {
+    /* Light Observatory Palette */
+    --cosmic-bg: #F8FAFC;
+    --cosmic-sidebar: #FFFFFF;
+    --cosmic-surface: #FFFFFF;
+    --cosmic-surface-subtle: #F1F5F9;
+    --cosmic-surface-hover: #E2E8F0;
+    --cosmic-border: #E2E8F0;
+    --cosmic-border-subtle: #CBD5E1;
+    --cosmic-border-strong: #94A3B8;
+
+    /* Scientific Data Typography */
+    --cosmic-text: #0F172A;
+    --cosmic-text-muted: #475569;
+    --cosmic-text-subtle: #64748B;
+
+    /* Semantic Status & Candidate Accents */
+    --cosmic-cyan: #0284C7;
+    --cosmic-cyan-subtle: rgba(2, 132, 199, 0.1);
+    --cosmic-violet: #6366F1;
+    --cosmic-violet-subtle: rgba(99, 102, 241, 0.1);
+    --cosmic-amber: #D97706;
+    --cosmic-amber-subtle: rgba(217, 119, 6, 0.1);
+    --cosmic-green: #059669;
+    --cosmic-green-subtle: rgba(5, 150, 105, 0.1);
+    --cosmic-rose: #E11D48;
+    --cosmic-rose-subtle: rgba(225, 29, 72, 0.1);
+
+    /* Chart Colors */
+    --cosmic-chart-bg: #FFFFFF;
+    --cosmic-chart-grid: #E2E8F0;
+    --cosmic-chart-axis: #CBD5E1;
+    --cosmic-chart-text: #475569;
+  }
+
+  body {
+    background-color: var(--cosmic-bg);
+    color: var(--cosmic-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--cosmic-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--cosmic-border);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--cosmic-border-strong);
+  }
+}
+
+/* Astronomical coordinate & scientific monospace styling */
+.font-mono-astronomy {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-feature-settings: "zero" 1, "tnum" 1;
+}
+
+/* Clean Observatory Card & Panel Utility Classes */
+.obs-card {
+  background-color: var(--cosmic-surface);
+  border: 1px solid var(--cosmic-border);
+  border-radius: 0.75rem;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.obs-card-subtle {
+  background-color: var(--cosmic-surface-subtle);
+  border: 1px solid var(--cosmic-border-subtle);
+  border-radius: 0.5rem;
+}
+
+.obs-card-hover:hover {
+  background-color: var(--cosmic-surface-hover);
+  border-color: var(--cosmic-cyan);
+}
+
+.obs-border {
+  border-color: var(--cosmic-border);
+}
+
+/* Subtle observatory grid background for Dark mode only */
+[data-theme="dark"] .cosmic-grid-bg {
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.03) 0%, transparent 60%),
+    linear-gradient(to right, rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+}
+
+/* Clean grid for Light mode */
+[data-theme="light"] .cosmic-grid-bg {
+  background-image: 
+    linear-gradient(to right, rgba(100, 116, 139, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(100, 116, 139, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px;
+}
+
+/* Reticle crosshair pulse animation (subtle, restrained) */
+@keyframes reticlePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 0.7;
+  }
+}
+
+.animate-reticle {
+  animation: reticlePulse 2.5s ease-in-out infinite;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+[data-reduced-motion="true"] *,
+[data-reduced-motion="true"] *::before,
+[data-reduced-motion="true"] *::after {
+  animation: none !important;
+  transition: none !important;
+}
