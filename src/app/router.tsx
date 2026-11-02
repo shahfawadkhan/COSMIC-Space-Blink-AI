@@ -6,6 +6,7 @@ import { SkyExplorerPage } from '../pages/SkyExplorerPage';
 import { ObservationComparisonPage } from '../pages/ObservationComparisonPage';
 import { CandidateIntelligencePage } from '../pages/CandidateIntelligencePage';
 import { CandidateDetailsPage } from '../pages/CandidateDetailsPage';
+import { ScientificAnalysisPage } from '../pages/ScientificAnalysisPage';
 import { SettingsPage } from '../pages/SettingsPage';
 
 export const router = createBrowserRouter([
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: 'comparison',
         element: <ObservationComparisonPage />
+      },
+      {
+        path: 'analysis',
+        element: <ScientificAnalysisPage />
       },
       {
         path: 'candidates',

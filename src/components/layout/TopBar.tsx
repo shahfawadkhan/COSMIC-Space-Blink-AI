@@ -19,6 +19,7 @@ export const TopBar: React.FC<TopBarProps> = ({ collapsed }) => {
     if (path === '/') return { title: 'Explore the Sky', category: 'Celestial Coordinates' };
     if (path === '/overview') return { title: 'Observation Terminal', category: 'COSMIC' };
     if (path.startsWith('/comparison')) return { title: 'Observation Viewer', category: 'Multi-Epoch' };
+    if (path.startsWith('/analysis')) return { title: 'Scientific Analysis Workspace', category: 'Multi-Epoch' };
     if (path.startsWith('/candidates/')) return { title: 'Candidate Dossier', category: 'Astrometry' };
     if (path.startsWith('/candidates')) return { title: 'Candidate Queue', category: 'Triage' };
     if (path.startsWith('/sky')) return { title: 'Sky Map', category: 'Celestial Grid' };

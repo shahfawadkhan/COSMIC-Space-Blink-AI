@@ -8,7 +8,8 @@ import {
   ChevronLeft, 
   ChevronRight,
   Orbit,
-  LayoutDashboard
+  LayoutDashboard,
+  LineChart
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -21,6 +22,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => 
     { to: '/', label: 'Explore Sky', icon: Compass },
     { to: '/overview', label: 'Overview', icon: LayoutDashboard },
     { to: '/comparison', label: 'Observation Viewer', icon: SplitSquareVertical },
+    { to: '/analysis', label: 'Analysis Workspace', icon: LineChart },
     { to: '/candidates', label: 'Candidate Queue', icon: Crosshair },
     { to: '/sky', label: 'Sky Map', icon: Orbit },
     { to: '/settings', label: 'Settings', icon: Settings }

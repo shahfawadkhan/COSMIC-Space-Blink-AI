@@ -8,7 +8,7 @@ import { StatusBadge, PriorityBadge } from '../components/ui/StatusBadge';
 import { LoadingState } from '../components/ui/LoadingState';
 import { formatCoordinates } from '../lib/astroUtils';
 import { useSettings } from '../context/SettingsContext';
-import { ArrowLeft, Clock, MessageSquarePlus, Send, Bookmark, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Clock, MessageSquarePlus, Send, Bookmark, CheckCircle2, FlaskConical } from 'lucide-react';
 
 export const CandidateDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -98,14 +98,24 @@ export const CandidateDetailsPage: React.FC = () => {
       <div className="flex items-center justify-between">
         <button
           onClick={() => navigate('/candidates')}
-          className="flex items-center gap-1.5 text-xs font-mono text-[var(--cosmic-text-muted)] hover:text-[var(--cosmic-text)] transition-colors"
+          className="flex items-center gap-1.5 text-xs font-mono text-[var(--cosmic-text-muted)] hover:text-[var(--cosmic-text)] transition-colors cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
           Candidate Queue
         </button>
-        <span className="text-[10px] font-mono text-[var(--cosmic-text-muted)] bg-[var(--cosmic-surface-subtle)] px-2 py-0.5 rounded border border-[var(--cosmic-border)]">
-          Local Session Triage
-        </span>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => navigate(`/analysis?source=${candidate.id}`)}
+            className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[var(--cosmic-surface-subtle)] hover:bg-[var(--cosmic-surface-hover)] border border-[var(--cosmic-violet)]/40 hover:border-[var(--cosmic-violet)] text-xs font-mono text-[var(--cosmic-violet)] transition-colors cursor-pointer font-medium"
+            title="Open in Multi-Epoch Scientific Analysis Workspace"
+          >
+            <FlaskConical className="w-3.5 h-3.5" />
+            <span>Open in Analysis Workspace</span>
+          </button>
+          <span className="text-[10px] font-mono text-[var(--cosmic-text-muted)] bg-[var(--cosmic-surface-subtle)] px-2 py-0.5 rounded border border-[var(--cosmic-border)]">
+            Local Session Triage
+          </span>
+        </div>
       </div>
 
       {/* Candidate identity + controls */}

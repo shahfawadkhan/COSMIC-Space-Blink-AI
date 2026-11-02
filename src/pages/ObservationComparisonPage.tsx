@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
-import { Compass, AlertTriangle, ArrowLeft } from 'lucide-react';
+import { Compass, AlertTriangle, FlaskConical } from 'lucide-react';
 import { observationService } from '../services/observationService';
 import { ObservationMetadata, DifferenceMetric, EpochId } from '../types/observation';
 import { ComparisonViewer } from '../components/observations/ComparisonViewer';
@@ -97,16 +97,25 @@ export const ObservationComparisonPage: React.FC = () => {
           </p>
         </div>
 
-        {/* Return to Explore Sky button */}
-        <div className="flex items-center gap-3 flex-wrap shrink-0">
+        {/* Navigation buttons */}
+        <div className="flex items-center gap-2 flex-wrap shrink-0">
           <button
             onClick={() => navigate('/')}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--cosmic-surface)] hover:bg-[var(--cosmic-surface-hover)] border border-[var(--cosmic-border)] text-xs font-mono text-[var(--cosmic-text-muted)] hover:text-[var(--cosmic-text)] transition-colors cursor-pointer"
             title="Return to Explore Sky Coordinate Search"
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
             <Compass className="w-3.5 h-3.5 text-[var(--cosmic-cyan)]" />
             <span>Explore Sky</span>
+          </button>
+
+          <button
+            onClick={() => navigate('/analysis', { state: location.state })}
+            id="comparison-nav-analysis"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--cosmic-surface)] hover:bg-[var(--cosmic-surface-hover)] border border-[var(--cosmic-violet)]/40 hover:border-[var(--cosmic-violet)] text-xs font-mono text-[var(--cosmic-violet)] transition-colors cursor-pointer font-semibold"
+            title="Open Multi-Epoch Scientific Analysis Workspace"
+          >
+            <FlaskConical className="w-3.5 h-3.5" />
+            <span>Scientific Analysis</span>
           </button>
         </div>
       </div>

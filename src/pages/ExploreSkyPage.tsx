@@ -9,7 +9,8 @@ import {
   CheckCircle2,
   Sliders,
   Sparkles,
-  Info
+  Info,
+  FlaskConical
 } from 'lucide-react';
 import { observationService } from '../services/observationService';
 import {
@@ -638,7 +639,26 @@ export const ExploreSkyPage: React.FC = () => {
                   className="px-3 py-1.5 rounded-lg bg-[var(--cosmic-surface-subtle)] hover:bg-[var(--cosmic-surface-hover)] border border-[var(--cosmic-cyan)]/40 hover:border-[var(--cosmic-cyan)] text-[var(--cosmic-cyan)] text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
                 >
                   <SplitSquareVertical className="w-3.5 h-3.5" />
-                  <span>Open Sequence in Blink Comparator</span>
+                  <span>Observation Viewer</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    const targetQuery = activePreset ? activePreset.name : `RA ${raInput}°, Dec ${decInput}°`;
+                    navigate(`/analysis?target=${encodeURIComponent(targetQuery)}`, {
+                      state: {
+                        targetName: targetQuery,
+                        coordinates: { ra: parseFloat(raInput), dec: parseFloat(decInput), fov: parseFloat(fovInput) },
+                        observations: searchResponse?.observations || []
+                      }
+                    });
+                  }}
+                  id="open-analysis-workspace-btn"
+                  className="px-3 py-1.5 rounded-lg bg-[var(--cosmic-surface-subtle)] hover:bg-[var(--cosmic-surface-hover)] border border-[var(--cosmic-violet)]/40 hover:border-[var(--cosmic-violet)] text-[var(--cosmic-violet)] text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
+                  title="Open Multi-Epoch Scientific Analysis Workspace"
+                >
+                  <FlaskConical className="w-3.5 h-3.5" />
+                  <span>Scientific Analysis</span>
                 </button>
               </div>
             </div>
